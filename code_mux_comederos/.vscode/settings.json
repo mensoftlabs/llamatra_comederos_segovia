@@ -8,9 +8,11 @@
     },
     "idf.espIdfPathWin": "c:\\Users\\MSI_P\\esp\\v5.0\\esp-idf",
     "idf.openOcdConfigs": [
-        "board/esp32-wrover-kit-3.3v.cfg"
+        "interface/ftdi/esp32_devkitj_v1.cfg",
+        "target/esp32.cfg"
     ],
-    "idf.portWin": "COM3",
+    "idf.portWin": "COM5",
     "idf.pythonBinPathWin": "c:\\Users\\MSI_P\\.espressif\\python_env\\idf5.0_py3.11_env\\Scripts\\python.exe",
-    "idf.toolsPathWin": "c:\\Users\\MSI_P\\.espressif"
+    "idf.toolsPathWin": "c:\\Users\\MSI_P\\.espressif",
+    "idf.flashType": "UART"
 }

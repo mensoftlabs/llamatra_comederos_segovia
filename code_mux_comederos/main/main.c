@@ -6,8 +6,14 @@
 
 // Definir los pines UART
 #define UART_NUM UART_NUM_1
-#define UART_TX_PIN GPIO_NUM_18 //CLK
-#define UART_RX_PIN GPIO_NUM_19 //MISO
+#define UART_TX_PIN GPIO_NUM_18  //CLK
+#define UART_RX_PIN GPIO_NUM_19  //MISO
+#define UART_INH_PIN GPIO_NUM_23 //MOSI
+
+// Definir los pines de control del MUX
+#define PIN_A GPIO_NUM_13        //SENSE1
+#define PIN_B GPIO_NUM_15        //SENSE3
+#define PIN_C GPIO_NUM_14        //SENSE2
 
 // Tamaño del buffer
 #define BUF_SIZE (1024)
@@ -46,6 +52,20 @@ bool process_data_packet(uint8_t *data, int length) {
     return 0; // Devolver 0 si no se pudo procesar ningún paquete correctamente
 }
 
+// Función para configurar los pines de control A, B y C del MUX
+void configure_multiplexer() {
+    gpio_set_direction(PIN_A, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_B, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_C, GPIO_MODE_OUTPUT);
+    gpio_set_direction(UART_INH_PIN, GPIO_MODE_OUTPUT);
+
+    // Seleccionar el canal Y0 (A=0, B=0, C=0)
+    gpio_set_level(PIN_A, 0);
+    gpio_set_level(PIN_B, 0);
+    gpio_set_level(PIN_C, 1);
+    gpio_set_level(UART_INH_PIN, 0);
+}
+
 // Función para configurar el UART
 void configure_uart(void) {
     const uart_config_t uart_config = {
@@ -59,7 +79,7 @@ void configure_uart(void) {
     };
     uart_param_config(UART_NUM, &uart_config);
     uart_set_pin(UART_NUM, UART_TX_PIN, UART_RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
-    uart_driver_install(UART_NUM, BUF_SIZE * 2, 0, 0, NULL, 0);
+    uart_driver_install(UART_NUM, BUF_SIZE, BUF_SIZE, 0, NULL, 0);
 }
 
 // Función que lee y procesa los datos del sensor
@@ -82,8 +102,9 @@ bool read_ultrasonic_sensor(void) {
 
 // Función principal
 void app_main(void) {
-    // Configurar UART solo una vez
+    // Configurar UART y MUX solo una vez
     configure_uart();
+    configure_multiplexer();
 
     while (1) {
         // Llamar a la función de lectura del sensor y almacenar el resultado

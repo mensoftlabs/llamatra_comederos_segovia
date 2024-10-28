@@ -12,8 +12,8 @@
 
 // Definir los pines de control del MUX
 #define PIN_A GPIO_NUM_13        //SENSE1
-#define PIN_B GPIO_NUM_15        //SENSE3
-#define PIN_C GPIO_NUM_14        //SENSE2
+#define PIN_B GPIO_NUM_15        //SENSE2
+#define PIN_C GPIO_NUM_14        //SENSE3
 
 // Tamaño del buffer
 #define BUF_SIZE (1024)
@@ -62,7 +62,7 @@ void configure_multiplexer() {
     // Seleccionar el canal Y0 (A=0, B=0, C=0)
     gpio_set_level(PIN_A, 0);
     gpio_set_level(PIN_B, 0);
-    gpio_set_level(PIN_C, 1);
+    gpio_set_level(PIN_C, 0);
     gpio_set_level(UART_INH_PIN, 0);
 }
 

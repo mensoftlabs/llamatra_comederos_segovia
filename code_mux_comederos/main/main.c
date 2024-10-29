@@ -6,14 +6,16 @@
 
 // Definir los pines UART
 #define UART_NUM UART_NUM_1
-#define UART_TX_PIN GPIO_NUM_18  //CLK
-#define UART_RX_PIN GPIO_NUM_19  //MISO
-#define UART_INH_PIN GPIO_NUM_23 //MOSI
+#define UART_TX_PIN GPIO_NUM_18  //CLK (TX del micro)
+#define UART_RX_PIN GPIO_NUM_19  //MISO (RX del micro)
+#define UART_INH_PIN GPIO_NUM_23 //MOSI 
 
 // Definir los pines de control del MUX
 #define PIN_A GPIO_NUM_13        //SENSE1
-#define PIN_B GPIO_NUM_15        //SENSE2
-#define PIN_C GPIO_NUM_14        //SENSE3
+//#define PIN_B GPIO_NUM_15        //SENSE2
+#define PIN_B GPIO_NUM_5         //SD_CS
+//#define PIN_C GPIO_NUM_14        //SENSE3
+#define PIN_C GPIO_NUM_22        //SCL
 
 // Tamaño del buffer
 #define BUF_SIZE (1024)
@@ -62,7 +64,7 @@ void configure_multiplexer() {
     // Seleccionar el canal Y0 (A=0, B=0, C=0)
     gpio_set_level(PIN_A, 0);
     gpio_set_level(PIN_B, 0);
-    gpio_set_level(PIN_C, 0);
+    gpio_set_level(PIN_C, 1);
     gpio_set_level(UART_INH_PIN, 0);
 }
 
@@ -109,8 +111,14 @@ void app_main(void) {
     while (1) {
         // Llamar a la función de lectura del sensor y almacenar el resultado
         bool pig_presence = read_ultrasonic_sensor();
-
+        
+    /*    //PRUEBA PARA VER SI TX DEL ESP32 FUNCIONA
+        uint8_t byte_to_send = 0xAA;  // Byte a enviar
+        // Enviar el byte por UART
+        uart_write_bytes(UART_NUM, (const char *)&byte_to_send, 1); //Enviar caracter "..." continuamente
+    */
         // Esperar un segundo antes de la siguiente lectura
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
+

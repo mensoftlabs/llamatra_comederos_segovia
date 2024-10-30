@@ -6,20 +6,20 @@
 
 // Definir los pines UART
 #define UART_NUM UART_NUM_1
-#define UART_TX_PIN GPIO_NUM_18  //CLK (TX del micro)
+#define UART_TX_PIN GPIO_NUM_13  //SENSE1 (TX del micro) -> No se usa
 #define UART_RX_PIN GPIO_NUM_19  //MISO (RX del micro)
 #define UART_INH_PIN GPIO_NUM_23 //MOSI 
 
 // Definir los pines de control del MUX
-#define PIN_A GPIO_NUM_22        //scl
+#define PIN_A GPIO_NUM_18        //CLK
 #define PIN_B GPIO_NUM_5         //SD_CS
-#define PIN_C GPIO_NUM_13        //zsense1
+#define PIN_C GPIO_NUM_22        //SCL
 
 // Tamaño del buffer
 #define BUF_SIZE (1024)
 
 // Definir el número de sensores para multiplexar
-#define NUM_SENSE 2
+#define NUM_SENSE 3
 uint8_t canal = 0; //Variable global
 
 
@@ -137,7 +137,7 @@ bool read_ultrasonic_sensor(void) {
 // Función principal
 void app_main(void) {
 
-        gpio_set_direction(PIN_A, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_A, GPIO_MODE_OUTPUT);
     gpio_set_direction(PIN_B, GPIO_MODE_OUTPUT);
     gpio_set_direction(PIN_C, GPIO_MODE_OUTPUT);
     gpio_set_direction(UART_INH_PIN, GPIO_MODE_OUTPUT);
@@ -149,7 +149,6 @@ void app_main(void) {
         configure_multiplexer(canal);
         printf("Sensor %d: \n", canal+1);
         read_ultrasonic_sensor();
-        uart_flush_input(UART_NUM);
 
         //Cambia al siguiente canal
         canal = (canal + 1) % NUM_SENSE;

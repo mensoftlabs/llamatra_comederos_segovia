@@ -12,9 +12,7 @@
 
 // Definir los pines de control del MUX
 #define PIN_A GPIO_NUM_13        //SENSE1
-//#define PIN_B GPIO_NUM_15        //SENSE2
 #define PIN_B GPIO_NUM_5         //SD_CS
-//#define PIN_C GPIO_NUM_14        //SENSE3
 #define PIN_C GPIO_NUM_22        //SCL
 
 // Tamaño del buffer

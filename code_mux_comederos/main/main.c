@@ -18,6 +18,10 @@
 // Tamaño del buffer
 #define BUF_SIZE (1024)
 
+// Definir el número de sensores para multiplexar
+#define NUM_SENSE 2
+int canal = 0; //Variable global
+
 // Función para procesar un paquete de datos del sensor
 bool process_data_packet(uint8_t *data, int length) {
     for (int i = 0; i < length; i += 4) {
@@ -40,6 +44,7 @@ bool process_data_packet(uint8_t *data, int length) {
                     pig = 1;
                   }
                 printf("Hay cerdo: %d \n", pig);
+                printf("\n");
 
                 return pig; // Devolver la variable que decide si el cerdo está bebiendo
             } else {
@@ -59,11 +64,12 @@ void configure_multiplexer() {
     gpio_set_direction(PIN_C, GPIO_MODE_OUTPUT);
     gpio_set_direction(UART_INH_PIN, GPIO_MODE_OUTPUT);
 
-    // Seleccionar el canal Y0 (A=0, B=0, C=0)
-    gpio_set_level(PIN_A, 0);
-    gpio_set_level(PIN_B, 0);
-    gpio_set_level(PIN_C, 1);
-    gpio_set_level(UART_INH_PIN, 0);
+    // Configuración de los pines A, B, y C según el canal con op de bits
+    gpio_set_level(PIN_A, (canal >> 0) & 1);
+    gpio_set_level(PIN_B, (canal >> 1) & 1);
+    gpio_set_level(PIN_C, (canal >> 2) & 1);
+
+    gpio_set_level(UART_INH_PIN, 0); //Habilitar el mux
 }
 
 // Función para configurar el UART
@@ -104,19 +110,16 @@ bool read_ultrasonic_sensor(void) {
 void app_main(void) {
     // Configurar UART y MUX solo una vez
     configure_uart();
-    configure_multiplexer();
 
     while (1) {
-        // Llamar a la función de lectura del sensor y almacenar el resultado
-        bool pig_presence = read_ultrasonic_sensor();
+        configure_multiplexer();
+        printf("Sensor %d: \n", canal+1);
+        read_ultrasonic_sensor();
+
+        //Cambia al siguiente canal
+        canal = (canal + 1) % NUM_SENSE;
         
-    /*    //PRUEBA PARA VER SI TX DEL ESP32 FUNCIONA
-        uint8_t byte_to_send = 0xAA;  // Byte a enviar
-        // Enviar el byte por UART
-        uart_write_bytes(UART_NUM, (const char *)&byte_to_send, 1); //Enviar caracter "..." continuamente
-    */
         // Esperar un segundo antes de la siguiente lectura
-        vTaskDelay(pdMS_TO_TICKS(100));
+        vTaskDelay(pdMS_TO_TICKS(1500));
     }
 }
-

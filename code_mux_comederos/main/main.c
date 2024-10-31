@@ -22,8 +22,6 @@
 #define NUM_SENSE 3
 uint8_t canal = 0; //Variable global
 
-
-
 // Función para procesar un paquete de datos del sensor
 bool process_data_packet(uint8_t *data, int length) {
     for (int i = 0; i < length; i += 4) {

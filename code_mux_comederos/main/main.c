@@ -7,7 +7,7 @@
 // Definir los pines UART
 #define UART_NUM UART_NUM_1
 #define UART_TX_PIN GPIO_NUM_13  //SENSE1 (TX del micro) -> No se usa
-#define UART_RX1_PIN GPIO_NUM_19  //MISO (RX del micro)
+#define UART_RX_PIN GPIO_NUM_19  //MISO (RX del micro)
 #define UART_INH_PIN GPIO_NUM_23 //MOSI 
 
 // Definir los pines de control del MUX

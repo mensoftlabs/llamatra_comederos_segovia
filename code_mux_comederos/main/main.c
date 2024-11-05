@@ -19,7 +19,7 @@
 #define BUF_SIZE (1024)
 
 // Definir el número de sensores para multiplexar
-#define NUM_SENSE 2
+#define NUM_SENSE 3
 uint8_t canal = 0; //Variable global
 
 // Función para procesar un paquete de datos del sensor

@@ -20,10 +20,11 @@
 
 // Definir el número de sensores para multiplexar
 #define NUM_SENSE 3
-uint8_t canal = 0; //Variable global
+uint8_t canal = 1; //Variable global
 
 // Función para procesar un paquete de datos del sensor
 bool process_data_packet(uint8_t *data, int length) {
+  //printf("Longitud del paquete recibido: %d\n", length); // Imprimir la longitud total
 
     for (int i = 0; i < length; i += 4) {
         if (data[i] == 0xFF && i + 3 < length) {  // Verificar header y longitud suficiente para el paquete
@@ -61,37 +62,37 @@ bool process_data_packet(uint8_t *data, int length) {
 }
 
 // Función para configurar los pines de control A, B y C del MUX
-void configure_multiplexer(uint8_t canal1) {
+void configure_multiplexer() {
+    canal = (canal + 1) % NUM_SENSE; // Avanzar al siguiente canal
 
-    switch (canal1) {
-        case 0: //Sensor 1 en el pin C0
-          gpio_set_level(PIN_A, 0);
-          gpio_set_level(PIN_B, 0);
-          gpio_set_level(PIN_C, 0);
-          gpio_set_level(PIN_D, 0);
-          break;
-        case 1: //Sensor 2 en el pin C1
+    // Saltar el canal 0
+    if (canal == 0) {
+      canal = 1; // Si cae en 0, ir al siguiente canal
+    }
+
+    switch (canal) {
+        case 1: //Sensor 1 en el pin C1
           gpio_set_level(PIN_A, 1);
           gpio_set_level(PIN_B, 0);
           gpio_set_level(PIN_C, 0);
           gpio_set_level(PIN_D, 0);
           break;
-        case 2: //Sensor 3 en el pin C2
+        case 2: //Sensor 2 en el pin C2
           gpio_set_level(PIN_A, 0);
           gpio_set_level(PIN_B, 1);
           gpio_set_level(PIN_C, 0);
           gpio_set_level(PIN_D, 0);
           break;
-        case 3: //Sensor 4 en el pin C3
+        case 3: //Sensor 3 en el pin C3
           gpio_set_level(PIN_A, 1);
           gpio_set_level(PIN_B, 1);
           gpio_set_level(PIN_C, 0);
           gpio_set_level(PIN_D, 0);
           break;
-        case 4: //Sensor 5 en el pin Cs4
-          gpio_set_level(PIN_A, 1);
-          gpio_set_level(PIN_B, 1);
-          gpio_set_level(PIN_C, 0);
+        case 4: //Sensor 4 en el pin Cs4
+          gpio_set_level(PIN_A, 0);
+          gpio_set_level(PIN_B, 0);
+          gpio_set_level(PIN_C, 1);
           gpio_set_level(PIN_D, 0);
           break;
     }
@@ -151,9 +152,6 @@ void app_main(void) {
         configure_multiplexer(canal);
         read_ultrasonic_sensor();
 
-        //Cambia al siguiente canal
-        canal = (canal + 1) % NUM_SENSE;
-        
         // Esperar antes de la siguiente lectura
         vTaskDelay(pdMS_TO_TICKS(1000));
     }

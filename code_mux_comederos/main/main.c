@@ -24,6 +24,7 @@ uint8_t canal = 0; //Variable global
 
 // Función para procesar un paquete de datos del sensor
 bool process_data_packet(uint8_t *data, int length) {
+
     for (int i = 0; i < length; i += 4) {
         if (data[i] == 0xFF && i + 3 < length) {  // Verificar header y longitud suficiente para el paquete
             uint8_t Data_H = data[i + 1];
@@ -120,7 +121,7 @@ bool read_ultrasonic_sensor(void) {
     uint8_t data[BUF_SIZE];
 
     // Leer datos del sensor y limpiar buffer
-    int length = uart_read_bytes(UART_NUM, data, 92, 100 / portTICK_PERIOD_MS);
+    int length = uart_read_bytes(UART_NUM, data, 40, 100 / portTICK_PERIOD_MS);
     uart_flush_input(UART_NUM);
 
     if (length > 0) {

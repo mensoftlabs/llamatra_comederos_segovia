@@ -19,7 +19,7 @@
 #define BUF_SIZE (1024)
 
 // Definir el número de sensores para multiplexar
-#define NUM_SENSE 3
+#define NUM_SENSE 2
 uint8_t canal = 0; //Variable global
 
 // Función para procesar un paquete de datos del sensor
@@ -36,7 +36,7 @@ bool process_data_packet(uint8_t *data, int length) {
                 uint8_t distance = (Data_H << 8) | Data_L;
                 uint8_t umbral = 100;
                 bool pig;
-                printf("Distancia: %d mm\n", distance);
+                printf(" %d mm\n", distance);
 
                 if (distance > umbral) {
                     pig = 0;
@@ -90,7 +90,7 @@ void configure_multiplexer(uint8_t canal1) {
           break;
     }
 
-    printf("Canal actual: %d \n", canal);
+    printf("Canal actual %d: ", canal);
 
     gpio_set_level(UART_INH_PIN, 0); //Habilitar el mux
 }
@@ -117,7 +117,7 @@ bool read_ultrasonic_sensor(void) {
     uint8_t data[BUF_SIZE];
 
     // Leer datos del sensor y limpiar buffer
-    int length = uart_read_bytes(UART_NUM, data, BUF_SIZE, 100 / portTICK_PERIOD_MS);
+    int length = uart_read_bytes(UART_NUM, data, 92, 100 / portTICK_PERIOD_MS);
     uart_flush_input(UART_NUM);
 
     if (length > 0) {
@@ -145,14 +145,12 @@ void app_main(void) {
 
     while (1) {
         configure_multiplexer(canal);
-        printf("Sensor %d: \n", canal+1);
         read_ultrasonic_sensor();
 
         //Cambia al siguiente canal
         canal = (canal + 1) % NUM_SENSE;
-       //canal = 4;
         
         // Esperar antes de la siguiente lectura
-        vTaskDelay(pdMS_TO_TICKS(2000));
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

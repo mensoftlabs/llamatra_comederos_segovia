@@ -20,10 +20,13 @@
 
 // Definir el número de sensores para multiplexar
 #define NUM_SENSE 2
-uint8_t canal = 0; //Variable global
+
+//Variables globales
+uint8_t canal = 0; 
+uint8_t cont1, cont2, cont3, cont4, cont5;
 
 // Función para procesar un paquete de datos del sensor
-bool process_data_packet(uint8_t *data, int length) {
+uint8_t process_data_packet(uint8_t *data, int length) {
     for (int i = 0; i < length; i += 4) {
         if (data[i] == 0xFF && i + 3 < length) {  // Verificar header y longitud suficiente para el paquete
             uint8_t Data_H = data[i + 1];
@@ -33,7 +36,7 @@ bool process_data_packet(uint8_t *data, int length) {
             uint8_t calculated_checksum = (0xFF + Data_H + Data_L) & 0xFF;
 
             if (calculated_checksum == checksum) {
-                uint8_t distance = (Data_H << 8) | Data_L;
+                uint16_t distance = (Data_H << 8) | Data_L;
                 uint8_t umbral = 100;
                 bool pig;
                 printf(" %d mm\n", distance);

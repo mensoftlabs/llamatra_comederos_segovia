@@ -42,6 +42,9 @@ bool process_data_packet(uint8_t *data, int length) {
                     pig = 0;
                 } else {
                     pig = 1;
+                    if (distance == 0) {
+                      pig = 0;
+                    }
                   }
                 printf("Hay cerdo: %d \n", pig);
                 printf("\n");

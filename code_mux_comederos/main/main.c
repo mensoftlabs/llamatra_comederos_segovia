@@ -6,7 +6,7 @@
 
 // Definir los pines UART
 #define UART_NUM UART_NUM_1
-#define UART_TX_PIN GPIO_NUM_13  //SENSE1 (TX del micro) -> No se usa
+#define UART_TX_PIN GPIO_NUM_13  //SENSE1 (TX del micro) 
 #define UART_RX_PIN GPIO_NUM_19  //MISO (RX del micro)
 #define UART_INH_PIN GPIO_NUM_23 //MOSI 
 
@@ -145,6 +145,9 @@ void app_main(void) {
     gpio_set_direction(PIN_B, GPIO_MODE_OUTPUT);
     gpio_set_direction(PIN_C, GPIO_MODE_OUTPUT);
     gpio_set_direction(UART_INH_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_direction(UART_TX_PIN, GPIO_MODE_OUTPUT);
+
+    gpio_set_level(UART_TX_PIN, 0); //Fijar tiempo de respuesta a 100ns
 
     // Configurar UART y MUX solo una vez
     configure_uart();

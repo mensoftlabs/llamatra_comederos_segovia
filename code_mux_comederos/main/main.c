@@ -90,9 +90,9 @@ void configure_multiplexer() {
           gpio_set_level(PIN_C, 0);
           break;
         case 4: //Sensor 5 en el pin Y4
-          gpio_set_level(PIN_A, 1);
-          gpio_set_level(PIN_B, 1);
-          gpio_set_level(PIN_C, 0);
+          gpio_set_level(PIN_A, 0);
+          gpio_set_level(PIN_B, 0);
+          gpio_set_level(PIN_C, 1);
           break;
     }
 

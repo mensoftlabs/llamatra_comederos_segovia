@@ -19,7 +19,7 @@
 #define BUF_SIZE (1024)
 
 // Definir el número de sensores para multiplexar
-#define NUM_SENSE 2
+#define NUM_SENSE 5
 
 //Variables globales
 uint8_t canal = 0; 
@@ -66,9 +66,9 @@ uint8_t process_data_packet(uint8_t *data, int length) {
 }
 
 // Función para configurar los pines de control A, B y C del MUX
-void configure_multiplexer(uint8_t canal1) {
+void configure_multiplexer() {
 
-    switch (canal1) {
+    switch (canal) {
         case 0: //Sensor 1 en el pin Y0
           gpio_set_level(PIN_A, 0);
           gpio_set_level(PIN_B, 0);
@@ -144,8 +144,6 @@ void app_main(void) {
     gpio_set_direction(PIN_A, GPIO_MODE_OUTPUT);
     gpio_set_direction(PIN_B, GPIO_MODE_OUTPUT);
     gpio_set_direction(PIN_C, GPIO_MODE_OUTPUT);
-    gpio_set_direction(UART_INH_PIN, GPIO_MODE_OUTPUT);
-    gpio_set_direction(UART_TX_PIN, GPIO_MODE_OUTPUT);
 
     gpio_set_level(UART_TX_PIN, 0); //Fijar tiempo de respuesta a 100ns
 
@@ -153,13 +151,13 @@ void app_main(void) {
     configure_uart();
 
     while (1) {
-        configure_multiplexer(canal);
+        configure_multiplexer();
         read_ultrasonic_sensor();
 
         //Cambia al siguiente canal
         canal = (canal + 1) % NUM_SENSE;
         
         // Esperar antes de la siguiente lectura
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }

@@ -158,6 +158,6 @@ void app_main(void) {
         canal = (canal + 1) % NUM_SENSE;
         
         // Esperar antes de la siguiente lectura
-        vTaskDelay(pdMS_TO_TICKS(500));
+        vTaskDelay(pdMS_TO_TICKS(300));
     }
 }

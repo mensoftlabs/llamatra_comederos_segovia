@@ -26,6 +26,7 @@
 
 //Variables globales
 uint8_t canal = 0; 
+uint8_t umbral = 100;
 
 // Función para configurar el UART
 void configure_uart(void) {
@@ -134,11 +135,12 @@ uint16_t read_ultrasonic_sensor(void) {
           cont = cont + 1;
         }
         suma += val[i];
-        vTaskDelay(pdMS_TO_TICKS(50));
+        vTaskDelay(pdMS_TO_TICKS(15));
+    }
+    if (cont == 4) {
+      cont = 0;
     }
     uint16_t media = suma/(N-cont); // Calcular la media de los resultados válidos
-
-    uint8_t umbral = 100;
     bool pig;
     printf("Media: %d mm\n", media);
 
@@ -175,6 +177,6 @@ void app_main(void) {
       canal = (canal + 1) % NUM_SENSE;
       
       // Esperar antes de la siguiente lectura
-      vTaskDelay(pdMS_TO_TICKS(50));
+      //vTaskDelay(pdMS_TO_TICKS(50));
   }
 }

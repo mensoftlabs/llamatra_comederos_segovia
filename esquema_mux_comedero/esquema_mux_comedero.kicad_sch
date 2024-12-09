@@ -855,7 +855,7 @@
 	)
 	(bus
 		(pts
-			(xy 140.97 60.96) (xy 158.75 60.96)
+			(xy 138.43 64.77) (xy 156.21 64.77)
 		)
 		(stroke
 			(width 0.508)
@@ -866,7 +866,7 @@
 	)
 	(bus
 		(pts
-			(xy 140.97 77.47) (xy 158.75 77.47)
+			(xy 138.43 81.28) (xy 156.21 81.28)
 		)
 		(stroke
 			(width 0.508)
@@ -907,7 +907,7 @@
 	)
 	(bus
 		(pts
-			(xy 140.97 60.96) (xy 140.97 77.47)
+			(xy 138.43 64.77) (xy 138.43 81.28)
 		)
 		(stroke
 			(width 0.508)
@@ -1018,7 +1018,7 @@
 	)
 	(bus
 		(pts
-			(xy 158.75 77.47) (xy 158.75 60.96)
+			(xy 156.21 81.28) (xy 156.21 64.77)
 		)
 		(stroke
 			(width 0.508)
@@ -1127,9 +1127,9 @@
 		)
 		(uuid "faed0c78-43d5-4c71-a788-c50fa9aed9ed")
 	)
-	(text "Pin 13: SENSE1\nPin 19: MISO\n\nPin 5: SD_CS\nPin 18: CLK\nPin 22: SCL\nPin 23: MOSI\n"
+	(text "Pin 19: MISO\n\nPin 5: SD_CS\nPin 18: CLK\nPin 22: SCL\nPin 23: MOSI\n"
 		(exclude_from_sim no)
-		(at 150.368 69.088 0)
+		(at 147.828 72.898 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1187,7 +1187,7 @@
 			)
 		)
 	)
-	(global_label "Pin 13"
+	(global_label "Pin 19"
 		(shape input)
 		(at 101.6 99.06 270)
 		(fields_autoplaced yes)
@@ -1258,7 +1258,7 @@
 			)
 		)
 	)
-	(global_label "Pin 19"
+	(global_label "Pin 18"
 		(shape input)
 		(at 96.52 151.13 270)
 		(fields_autoplaced yes)
@@ -1333,7 +1333,7 @@
 			)
 		)
 	)
-	(global_label "Pin 13"
+	(global_label "Pin 19"
 		(shape input)
 		(at 147.32 110.49 270)
 		(fields_autoplaced yes)

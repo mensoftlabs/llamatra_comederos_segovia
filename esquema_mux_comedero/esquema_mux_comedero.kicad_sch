@@ -855,7 +855,7 @@
 	)
 	(bus
 		(pts
-			(xy 138.43 64.77) (xy 156.21 64.77)
+			(xy 142.24 127) (xy 160.02 127)
 		)
 		(stroke
 			(width 0.508)
@@ -866,7 +866,7 @@
 	)
 	(bus
 		(pts
-			(xy 138.43 81.28) (xy 156.21 81.28)
+			(xy 142.24 143.51) (xy 160.02 143.51)
 		)
 		(stroke
 			(width 0.508)
@@ -907,7 +907,7 @@
 	)
 	(bus
 		(pts
-			(xy 138.43 64.77) (xy 138.43 81.28)
+			(xy 142.24 127) (xy 142.24 143.51)
 		)
 		(stroke
 			(width 0.508)
@@ -1018,7 +1018,7 @@
 	)
 	(bus
 		(pts
-			(xy 156.21 81.28) (xy 156.21 64.77)
+			(xy 160.02 143.51) (xy 160.02 127)
 		)
 		(stroke
 			(width 0.508)
@@ -1129,7 +1129,7 @@
 	)
 	(text "Pin 19: MISO\n\nPin 5: SD_CS\nPin 18: CLK\nPin 22: SCL\nPin 23: MOSI\n"
 		(exclude_from_sim no)
-		(at 147.828 72.898 0)
+		(at 151.638 135.128 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1219,12 +1219,14 @@
 		(effects
 			(font
 				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
 			)
 			(justify left)
 		)
 		(uuid "41b95971-544a-4a5b-8689-c56f5ebae0ae")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 129.32 95.25 0)
+			(at 129.796 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)

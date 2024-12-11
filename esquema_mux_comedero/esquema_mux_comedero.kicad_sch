@@ -1187,7 +1187,7 @@
 			)
 		)
 	)
-	(global_label "Pin 19"
+	(global_label "Pin 13"
 		(shape input)
 		(at 101.6 99.06 270)
 		(fields_autoplaced yes)
@@ -1260,7 +1260,7 @@
 			)
 		)
 	)
-	(global_label "Pin 18"
+	(global_label "Pin 19"
 		(shape input)
 		(at 96.52 151.13 270)
 		(fields_autoplaced yes)
@@ -1335,7 +1335,7 @@
 			)
 		)
 	)
-	(global_label "Pin 19"
+	(global_label "Pin 13"
 		(shape input)
 		(at 147.32 110.49 270)
 		(fields_autoplaced yes)

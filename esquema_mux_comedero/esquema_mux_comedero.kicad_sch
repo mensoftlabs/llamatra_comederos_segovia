@@ -1303,7 +1303,7 @@
 		)
 		(uuid "fbc8c061-09ca-4d88-9098-c7a513e1c2d8")
 	)
-	(text "Pin 13: SENSE1\nPin 14: SENSE3\nPin 15: SENSE2\n\nPin 18: CLK\nPin 19: MISO\nPin 23: MOSI\n"
+	(text "Pin 13: SENSE1\nPin 14: SENSE3\nPin 15: SENSE2\n\nPin 5: SD_CS\nPin 18: CLK\nPin 19: MISO\nPin 23: MOSI\n"
 		(exclude_from_sim no)
 		(at 177.038 58.928 0)
 		(effects
@@ -1313,7 +1313,7 @@
 		)
 		(uuid "2c041eeb-d605-48b9-b621-fe2a9ceac975")
 	)
-	(global_label "Pin 15"
+	(global_label "Pin 5"
 		(shape input)
 		(at 115.57 96.52 90)
 		(fields_autoplaced yes)
@@ -1328,7 +1328,32 @@
 		)
 		(uuid "0d5791b4-ab0d-4e93-b6b6-9d4a521a0815")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 115.57 86.6484 90)
+			(at 115.57 87.8579 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Pin 22"
+		(shape input)
+		(at 179.07 96.52 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+				(color 194 0 194 1)
+			)
+			(justify left)
+		)
+		(uuid "13e5c10d-b4b1-4998-a1ce-79d53fe6cc6f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 179.07 86.6484 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1363,7 +1388,7 @@
 			)
 		)
 	)
-	(global_label "Pin 19"
+	(global_label "Pin 13"
 		(shape input)
 		(at 153.67 123.19 270)
 		(fields_autoplaced yes)
@@ -1412,31 +1437,6 @@
 			)
 		)
 	)
-	(global_label "Pin 13"
-		(shape input)
-		(at 168.91 96.52 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(thickness 0.254)
-				(bold yes)
-				(color 0 194 0 1)
-			)
-			(justify left)
-		)
-		(uuid "641a6c17-be4c-4ec0-b924-36b40e088210")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 168.91 86.6484 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "+3.3V"
 		(shape input)
 		(at 143.51 96.52 90)
@@ -1461,7 +1461,32 @@
 			)
 		)
 	)
-	(global_label "Pin 18"
+	(global_label "Pin 5"
+		(shape input)
+		(at 173.99 96.52 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+				(color 0 194 194 1)
+			)
+			(justify left)
+		)
+		(uuid "810f7c8e-0dad-42a6-94ef-69c2c5191dc2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 173.99 87.8579 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Pin 19"
 		(shape input)
 		(at 95.25 123.19 270)
 		(fields_autoplaced yes)
@@ -1486,7 +1511,32 @@
 			)
 		)
 	)
-	(global_label "Pin 14"
+	(global_label "Pin 18"
+		(shape input)
+		(at 168.91 96.52 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+				(color 0 194 0 1)
+			)
+			(justify left)
+		)
+		(uuid "9119c45e-ac80-4ac4-b2ee-629455b89f01")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 168.91 86.6484 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Pin 22"
 		(shape input)
 		(at 120.65 96.52 90)
 		(fields_autoplaced yes)
@@ -1511,7 +1561,7 @@
 			)
 		)
 	)
-	(global_label "Pin 13"
+	(global_label "Pin 18"
 		(shape input)
 		(at 110.49 96.52 90)
 		(fields_autoplaced yes)
@@ -1527,31 +1577,6 @@
 		(uuid "b0d76c59-d6fc-48b8-b80c-0db3b4bdba0d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 110.49 86.6484 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "Pin 14"
-		(shape input)
-		(at 179.07 96.52 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(thickness 0.254)
-				(bold yes)
-				(color 194 0 194 1)
-			)
-			(justify left)
-		)
-		(uuid "b8f0abfe-10b8-4bd4-ab9a-171708057757")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 179.07 86.6484 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1582,31 +1607,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "Pin 15"
-		(shape input)
-		(at 173.99 96.52 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(thickness 0.254)
-				(bold yes)
-				(color 0 194 194 1)
-			)
-			(justify left)
-		)
-		(uuid "efb48e8c-84a7-415d-ab67-e462fc787551")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 173.99 86.6484 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)

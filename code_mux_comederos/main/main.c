@@ -178,5 +178,5 @@ void app_main(void) {
     
     // Esperar antes de la siguiente lectura
     //vTaskDelay(pdMS_TO_TICKS(50));
-}
+  }
 }
